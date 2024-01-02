@@ -1,0 +1,11 @@
+Usage
+  $ github-generate-release [options]
+
+Options
+   Any flag provided will be passed to https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release
+
+
+Examples
+  $ github-generate-release # Creates a GitHub Releases for the latest tag.
+  $ github-generate-release --tagName 1.0.0 # Creates a GitHub Releases for the 1.0.0 tag.
+  $ github-generate-release --tagName 1.0.0 --draft # Creates a GitHub Releases in draft mode.
