@@ -4,9 +4,38 @@
 [![Coverage Status](https://img.shields.io/coveralls/kikobeats/github-generate-release.svg?style=flat-square)](https://coveralls.io/github/kikobeats/github-generate-release)
 [![NPM Status](https://img.shields.io/npm/dm/github-generate-release.svg?style=flat-square)](https://www.npmjs.org/package/github-generate-release)
 
-> Simplest way to create a GitHub release.
+**github-generate-release** is the simplest way to create a GitHub Release.
 
-Just run `npx github-generate-release` and it will publish the latest git tag as GitHub Release.
+Just call it and it will release the latest git tag created:
+
+```sh
+npx github-generate-release
+```
+
+That makes easy integrate it as part of a release workflow:
+
+```json
+{
+  "release": "standard-version -a",
+  "postrelease": "npm run release:tags && npm run release:github && npm publish",
+  "release:tags": "git push --follow-tags origin HEAD:master",
+  "release:github": "github-generate-release",
+}
+```
+
+You can pass any flag supported by [GitHub API release endpoint](https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release):
+
+```sh
+npx github-generate-release --draft
+```
+
+Alternatively, it can be used as Node.js module:
+
+```js
+const release = require('github-generate-release')
+
+await release({ draft: true })
+```
 
 ## License
 
