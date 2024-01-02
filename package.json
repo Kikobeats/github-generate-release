@@ -2,7 +2,7 @@
   "name": "github-generate-release",
   "description": "Simplest way to create a GitHub release.",
   "homepage": "https://github.com/Kikobeats/github-generate-release",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "src/index.js",
   "exports": {
     ".": "./cli/index.js"
