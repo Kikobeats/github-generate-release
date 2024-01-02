@@ -1,7 +1,6 @@
 # github-generate-release
 
 ![Last version](https://img.shields.io/github/tag/kikobeats/github-generate-release.svg?style=flat-square)
-[![Coverage Status](https://img.shields.io/coveralls/kikobeats/github-generate-release.svg?style=flat-square)](https://coveralls.io/github/kikobeats/github-generate-release)
 [![NPM Status](https://img.shields.io/npm/dm/github-generate-release.svg?style=flat-square)](https://www.npmjs.org/package/github-generate-release)
 
 **github-generate-release** is the simplest way to create a GitHub Release.
