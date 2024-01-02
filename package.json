@@ -1,7 +1,7 @@
 {
   "name": "github-generate-release",
   "description": "Simplest way to create a GitHub release.",
-  "homepage": "https://github.com/kikobeats/github-generate-release",
+  "homepage": "https://github.com/Kikobeats/github-generate-release",
   "version": "0.0.1",
   "main": "src/index.js",
   "exports": {
@@ -17,10 +17,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kikobeats/github-generate-release.git"
+    "url": "git+https://github.com/Kikobeats/github-generate-release.git"
   },
   "bugs": {
-    "url": "https://github.com/kikobeats/github-generate-release/issues"
+    "url": "https://github.com/Kikobeats/github-generate-release/issues"
   },
   "keywords": [
     "github",
@@ -33,14 +33,13 @@
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@ksmithut/prettier-standard": "latest",
+    "ci-publish": "latest",
     "conventional-github-releaser": "latest",
     "finepack": "latest",
     "git-authors-cli": "latest",
     "nano-staged": "latest",
-    "npm-check-updates": "latest",
     "simple-git-hooks": "latest",
     "standard": "latest",
-    "standard-markdown": "latest",
     "standard-version": "latest"
   },
   "engines": {
@@ -54,16 +53,13 @@
     "clean": "rm -rf node_modules",
     "contributors": "(npx git-authors-cli && npx finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
     "coverage": "c8 report --reporter=text-lcov > coverage/lcov.info",
-    "lint": "standard-markdown README.md && standard",
-    "postrelease": "npm run release:tags && npm run release:github && npm publish",
-    "prerelease": "npm run update:check",
+    "lint": "standard",
+    "postrelease": "npm run release:tags && npm run release:github && (ci-publish || npm publish --access=public)",
     "pretest": "npm run lint",
     "release": "standard-version -a",
     "release:github": "./bin/index.js",
     "release:tags": "git push --follow-tags origin HEAD:master",
-    "test": "exit 0",
-    "update": "ncu -u",
-    "update:check": "ncu -- --error-level 2"
+    "test": "exit 0"
   },
   "preferGlobal": true,
   "license": "MIT",
@@ -76,9 +72,6 @@
     "*.js": [
       "prettier-standard",
       "standard --fix"
-    ],
-    "*.md": [
-      "standard-markdown"
     ],
     "package.json": [
       "finepack"
