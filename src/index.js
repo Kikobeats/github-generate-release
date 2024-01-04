@@ -1,15 +1,9 @@
 'use strict'
 
-const { execSync } = require('child_process')
-
-const latestTag = () =>
-  execSync('git tag --sort=-creatordate').toString().trim().split('\n')[0]
-
 const gitDetails = opts => {
   if (opts.owner && opts.repo) return opts
-  const gitUrl = execSync('git remote get-url origin').toString().trim()
   const regex = /github\.com[:/](.*?)\/(.*?)\.git/
-  const [, owner, repo] = gitUrl.match(regex)
+  const [, owner, repo] = opts.url.match(regex)
   return { owner, repo }
 }
 
@@ -53,7 +47,7 @@ module.exports = async ({
     method: 'POST',
     body: JSON.stringify({
       name: name ?? undefined,
-      tag_name: tagName ?? latestTag(),
+      tag_name: tagName,
       generate_release_notes: true,
       prerelease,
       draft,
@@ -61,3 +55,5 @@ module.exports = async ({
     })
   })
 }
+
+module.exports.gitDetails = gitDetails
