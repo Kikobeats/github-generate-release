@@ -1,7 +1,7 @@
 Usage
-  $ github-generate-release [options]
+  $ github-generate-release [flags]
 
-Options
+Flags
    Any flag provided will be passed to https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release
 
 
