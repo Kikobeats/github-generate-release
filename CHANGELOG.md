@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.3 (2024-01-04)
+
+
+### Bug Fixes
+
+* support https git urls ([#2](https://github.com/Kikobeats/github-generate-release/issues/2)) ([4b81c1b](https://github.com/Kikobeats/github-generate-release/commit/4b81c1bf792649674711d2269b223fcee5aab77d))
+
 ### 1.0.2 (2024-01-04)
 
 ### 1.0.1 (2024-01-04)
