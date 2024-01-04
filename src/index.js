@@ -2,9 +2,17 @@
 
 const gitDetails = opts => {
   if (opts.owner && opts.repo) return opts
-  const regex = /github\.com[:/](.*?)\/(.*?)\.git/
-  const [, owner, repo] = opts.url.match(regex)
-  return { owner, repo }
+
+  const regex =
+    /(?:git@github\.com:|https:\/\/github\.com\/)(.*?)\/(.*?)(?:\.git)?$/
+  const match = opts.url.match(regex)
+
+  if (match) {
+    const [, owner, repo] = match
+    return { owner, repo }
+  }
+
+  throw new TypeError(`Invalid git url: ${opts.url}`)
 }
 
 const createGithubAPI =

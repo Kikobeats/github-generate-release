@@ -14,8 +14,6 @@ const { _, ...flags } = mri(process.argv.slice(2), {
   }
 })
 
-console.log('DEBUG url', flags.url)
-
 if (flags.help) {
   console.log(require('fs').readFileSync('./help.txt', 'utf8'))
   process.exit(0)
