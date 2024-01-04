@@ -2,9 +2,10 @@
 
 const { execSync } = require('child_process')
 
-const latestTag = () => execSync('git tag --sort=-creatordate').toString().trim().split('\n')[0]
+const latestTag = () =>
+  execSync('git tag --sort=-creatordate').toString().trim().split('\n')[0]
 
-const gitDetails = (opts) => {
+const gitDetails = opts => {
   if (opts.owner && opts.repo) return opts
   const gitUrl = execSync('git remote get-url origin').toString().trim()
   const regex = /github\.com[:/](.*?)\/(.*?)\.git/
@@ -12,16 +13,44 @@ const gitDetails = (opts) => {
   return { owner, repo }
 }
 
-module.exports = async ({ token, name, tagName, prerelease, draft, body, ...opts }) => {
-  const { owner, repo } = gitDetails(opts)
+const createGithubAPI =
+  token =>
+    async (url, { headers, ...opts } = {}) => {
+      const response = await fetch(url, {
+        headers: {
+          Accept: 'application/vnd.github+json',
+          Authorization: `Bearer ${token}`,
+          ...headers
+        },
+        ...opts
+      })
 
-  const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases`, {
+      const payload = await response.json().catch(() => ({}))
+
+      if (!response.ok) {
+        const error = new Error(
+        `${payload?.message} – See ${payload?.documentation_url}`
+        )
+        error.name = 'GitHubError'
+        throw error
+      }
+
+      return payload
+    }
+
+module.exports = async ({
+  token,
+  name,
+  tagName,
+  prerelease,
+  draft,
+  body,
+  ...opts
+}) => {
+  const { owner, repo } = gitDetails(opts)
+  const githubAPI = createGithubAPI(token)
+  return githubAPI(`https://api.github.com/repos/${owner}/${repo}/releases`, {
     method: 'POST',
-    headers: {
-      Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    },
     body: JSON.stringify({
       name: name ?? undefined,
       tag_name: tagName ?? latestTag(),
@@ -31,14 +60,4 @@ module.exports = async ({ token, name, tagName, prerelease, draft, body, ...opts
       body
     })
   })
-
-  const payload = await response.json()
-
-  if (!response.ok) {
-    const error = new Error(`${payload.message} – See ${payload.documentation_url}`)
-    error.name = 'GitHubError'
-    throw error
-  }
-
-  return payload
 }

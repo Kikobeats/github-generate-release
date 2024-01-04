@@ -34,7 +34,6 @@
     "@commitlint/config-conventional": "latest",
     "@ksmithut/prettier-standard": "latest",
     "ci-publish": "latest",
-    "conventional-github-releaser": "latest",
     "finepack": "latest",
     "git-authors-cli": "latest",
     "nano-staged": "latest",
