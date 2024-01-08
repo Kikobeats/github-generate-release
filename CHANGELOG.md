@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.4 (2024-01-08)
+
+
+### Bug Fixes
+
+* handle redirect manually ([91ee570](https://github.com/Kikobeats/github-generate-release/commit/91ee57033a6ee3c23e5e243441dfeb9aa29ccd43))
+
 ### 1.0.3 (2024-01-04)
 
 
