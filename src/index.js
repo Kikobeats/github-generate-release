@@ -52,9 +52,10 @@ module.exports = async ({
   const { owner, repo } = gitDetails(opts)
   const githubAPI = createGithubAPI(token)
   return githubAPI(`https://api.github.com/repos/${owner}/${repo}/releases`, {
+    redirect: 'manual',
     method: 'POST',
     body: JSON.stringify({
-      name: name ?? undefined,
+      name,
       tag_name: tagName,
       generate_release_notes: true,
       prerelease,
