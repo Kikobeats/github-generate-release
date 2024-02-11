@@ -5,7 +5,16 @@
 
 **github-generate-release** is the simplest way to create a GitHub Release.
 
+<div align="center">
+  <img style="width: 500px; margin:3rem 0 1.5rem;" src="https://raw.githubusercontent.com/Kikobeats/github-generate-release/master/media/light.png#gh-light-mode-only">
+  <img style="width: 500px; margin:3rem 0 1.5rem;" src="https://raw.githubusercontent.com/Kikobeats/github-generate-release/master/media/dark.png#gh-dark-mode-only">
+  <br>
+  <br>
+</div>
+
 It needs a GitHub token with `public_repo` permission, exposed as `GH_TOKEN` or `GITHUB_TOKEN` (see [example](https://github.com/Kikobeats/github-generate-release/blob/5a9db649b79ed0bb01194413e1dcc4818e82d155/.github/workflows/main.yml#L63)).
+
+## Getting Started
 
 Just call it and it will release the latest git tag created:
 
