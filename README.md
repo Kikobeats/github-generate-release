@@ -5,6 +5,8 @@
 
 **github-generate-release** is the simplest way to create a GitHub Release.
 
+It needs a GitHub token with `public_repo` permission, exposed as `GH_TOKEN` or `GITHUB_TOKEN` (see [example](https://github.com/Kikobeats/github-generate-release/blob/5a9db649b79ed0bb01194413e1dcc4818e82d155/.github/workflows/main.yml#L63)).
+
 Just call it and it will release the latest git tag created:
 
 ```sh
