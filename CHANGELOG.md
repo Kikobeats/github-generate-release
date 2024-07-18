@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.8 (2024-07-18)
+
+
+### Bug Fixes
+
+* more error details ([fecec06](https://github.com/Kikobeats/github-generate-release/commit/fecec06531a661dcfd84dfc98af328edc456974e))
+
 ### 1.0.7 (2024-07-18)
 
 ### 1.0.6 (2024-05-08)
