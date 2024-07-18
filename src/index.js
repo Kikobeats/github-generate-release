@@ -30,9 +30,11 @@ const createGithubAPI =
       const payload = await response.json().catch(() => ({}))
 
       if (!response.ok) {
-        const error = new Error(
-        `${payload?.message} – See ${payload?.documentation_url}`
-        )
+        const code = payload?.errors[0]?.code
+        let message = payload?.message
+        if (code) message += ` (${code})`
+        message += ` – See ${payload?.documentation_url}`
+        const error = new Error(message)
         error.name = 'GitHubError'
         throw error
       }
