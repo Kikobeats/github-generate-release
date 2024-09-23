@@ -30,7 +30,7 @@ const createGithubAPI =
       const payload = await response.json().catch(() => ({}))
 
       if (!response.ok) {
-        const code = payload?.errors[0]?.code
+        const code = payload?.errors?.[0]?.code
         let message = payload?.message
         if (code) message += ` (${code})`
         message += ` – See ${payload?.documentation_url}`
